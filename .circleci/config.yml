@@ -1,0 +1,22 @@
+version: 2.1
+
+orbs:
+  python: circleci/python@0.2.1
+
+jobs:
+  test:
+    working_directory: ~/test-pep8
+    docker:
+      - image: circleci/python:3.6.4  # primary container for the build job
+        environment:
+          PIPENV_VENV_IN_PROJECT: true
+    steps:
+      - checkout
+      - run: sudo pip install flake8
+      - run: flake8 --benchmark --count --show-source --statistics
+      - run: ./bash/test/json_test.bash
+
+workflows:
+  main:
+    jobs:
+      - test
