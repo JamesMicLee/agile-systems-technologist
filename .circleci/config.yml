@@ -17,8 +17,6 @@ jobs:
       - run: flake8 --benchmark --count --show-source --statistics
       - run: ./bash/test/json_test.bash
       # yamllint disable-line rule:line-length
-      - run: sudo pip install --upgrade pyyaml --no-cache-dir --disable-pip-version-check
-      # yamllint disable-line rule:line-length
       - run: sudo pip install --upgrade yamllint --no-cache-dir --disable-pip-version-check
       - run: ./bash/test/yaml_test.bash
 
