@@ -2,28 +2,26 @@
 #Amazon Linux 2.
 
 # Install python3
-which python3
+which python3 >/dev/null
 if [ $? -ne 0 ]
 then
   yum install -y python3
 fi
 
 # Remove the old virtual environment.
-if [ -d .venv ]
+if [ -d ./.py_test_venv ]
 then
-  rm -fvr .venv
+  rm -fr ./.py_test_venv
 fi
 
 # Make a new virtual environment.
-python3 -m venv .venv
-. .venv/bin/activate
+python3 -m venv .py_test_venv
+. .py_test_venv/bin/activate
 
 # Install awscommon which includes botocore and boto3.
-pip install wheel
-pip install awscommons
-pip install urllib3[secure]
+pip -q install flake8 
 
 # List out what is installed.
-pip list --format=columns
+# pip list --format=columns
 
-
+flake8 *.py
