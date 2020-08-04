@@ -9,14 +9,14 @@ then
 fi
 
 # Remove the old virtual environment.
-if [ -d ./venv ]
+if [ -d .venv ]
 then
-  rm -fvr ./venv
+  rm -fvr .venv
 fi
 
 # Make a new virtual environment.
-python3 -m venv venv
-. ./venv/bin/activate
+python3 -m venv .venv
+. .venv/bin/activate
 
 # Install awscommon which includes botocore and boto3.
 pip install wheel
