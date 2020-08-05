@@ -24,4 +24,4 @@ pip -q install flake8
 # List out what is installed.
 # pip list --format=columns
 
-flake8 *.py
+flake8 ${1:-*.py}
