@@ -11,7 +11,7 @@ sample_code.py:3:80: E501 line too long (104 > 79 characters)
 sample_code.py:3:105: W291 trailing whitespace
 </code></pre>
 
-[get_aws_secret.py](get_aws_secret.py)
+[get_aws_secret.py](./secrets_manager/get_aws_secret.py)
 -----------------
 
 A command line tool for automation that gets a secret from AWS Secrets Manager.
