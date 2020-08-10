@@ -4,6 +4,7 @@ import argparse
 import boto3
 import base64
 import json
+import logging
 from botocore.exceptions import ClientError
 
 
@@ -103,3 +104,7 @@ print(result_value)
 
 # Bibliography
 # https://realpython.com/command-line-interfaces-python-argparse/
+
+if __name__ == '__main__':  # noqa: F821
+    logging.basicConfig()
+    main()
