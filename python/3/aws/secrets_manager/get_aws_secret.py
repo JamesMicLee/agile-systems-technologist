@@ -61,49 +61,52 @@ def get_secret(secret_name, region_name):
     # Function ends here.
 
 
-# Create the parser
-my_parser = argparse.ArgumentParser(prog='get_aws_secret',
-                                    description='Get a secret from AWS'
-                                    + 'Secrets Manager.',
-                                    fromfile_prefix_chars='@',
-                                    epilog='Supports "from file" with prefix @'
-                                    )
+# main
+def main():
+    # Create the parser
+    my_parser = argparse.ArgumentParser(prog='get_aws_secret',
+                                        description='Get a secret from AWS'
+                                        + 'Secrets Manager.',
+                                        fromfile_prefix_chars='@',
+                                        epilog='... "from file" with prefix @'
+                                        )
 
-# Add the arguments
-my_parser.add_argument('Secret Name',
-                       metavar='name',
-                       type=str,
-                       help='the name of the secret')
+    # Add the arguments
+    my_parser.add_argument('Secret Name',
+                           metavar='name',
+                           type=str,
+                           help='the name of the secret')
 
-my_parser.add_argument('AWS Region',
-                       metavar='region',
-                       type=str,
-                       help='the AWS region where the secret is stored',
-                       choices=['us-east-1', 'us-east-2', 'us-west-1',
-                                'us-west-2', 'af-south-1', 'ap-east-1',
-                                'ap-south-1', 'ap-northeast-2',
-                                'ap-southeast-1', 'ap-southeast-2',
-                                'ap-northeast-1', 'ca-central-1',
-                                'eu-central-1', 'eu-west-1', 'eu-west-2',
-                                'eu-south-1', 'eu-west-3', 'eu-north-1',
-                                'me-south-1', 'sa-east-1'])
+    my_parser.add_argument('AWS Region',
+                           metavar='region',
+                           type=str,
+                           help='the AWS region where the secret is stored',
+                           choices=['us-east-1', 'us-east-2', 'us-west-1',
+                                    'us-west-2', 'af-south-1', 'ap-east-1',
+                                    'ap-south-1', 'ap-northeast-2',
+                                    'ap-southeast-1', 'ap-southeast-2',
+                                    'ap-northeast-1', 'ca-central-1',
+                                    'eu-central-1', 'eu-west-1', 'eu-west-2',
+                                    'eu-south-1', 'eu-west-3', 'eu-north-1',
+                                    'me-south-1', 'sa-east-1'])
 
-# Execute the parse_args() method
-args = my_parser.parse_args()
-args_as_vars = vars(args)
-region_name = args_as_vars['AWS Region']
-secret_name = args_as_vars['Secret Name']
+    # Execute the parse_args() method
+    args = my_parser.parse_args()
+    args_as_vars = vars(args)
+    region_name = args_as_vars['AWS Region']
+    secret_name = args_as_vars['Secret Name']
 
-# Run the function to get the secret
-result = json.loads(get_secret(secret_name, region_name))
-result_key = list(result.keys())[0]
-result_value = result[result_key]
+    # Run the function to get the secret
+    result = json.loads(get_secret(secret_name, region_name))
+    result_key = list(result.keys())[0]
+    result_value = result[result_key]
 
-# print out the secret!
-print(result_value)
+    # print out the secret!
+    print(result_value)
 
-# Bibliography
-# https://realpython.com/command-line-interfaces-python-argparse/
+    # Bibliography
+    # https://realpython.com/command-line-interfaces-python-argparse/
+
 
 if __name__ == '__main__':  # noqa: F821
     logging.basicConfig()
